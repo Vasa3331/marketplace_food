@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/themeleaf-extras-springsequrity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer marketplace</title>
+</head>
+<body>
+<h1>Menu</h1>
+<ul>
+    <li><a href="/">Products</a></li>
+    <li sec:authorize="hasRole('PRODUCER')"><a href="/producer">Add new product</a></li>
+    <li sec:authorize="hasRole('CONSUMER')"><a href="/basket">Basket</a></li>
+    <li sec:authorize="isAnonymous"><a href="/login">log in</a></li>
+    <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
+</ul>
+<h1>Farmer products</h1>
+
+<div th:each="product: ${products}">
+    <a th:href="@{/products/{id}(id=${product.getId()})}" th:text="${product.getName()}">list products</a>
+</div>
+
+</body>
+</html>

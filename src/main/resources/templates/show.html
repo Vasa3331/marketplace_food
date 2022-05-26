@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/themeleaf-extras-springsequrity5"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<h1>Menu</h1>
+<ul>
+    <li><a href="/">Products</a></li>
+    <li sec:authorize="hasRole('PRODUCER')"><a href="/producer">Add new product</a></li>
+    <li sec:authorize="hasRole('CONSUMER')"><a href="/basket">Basket</a></li>
+    <li sec:authorize="isAnonymous"><a href="/login">log in</a></li>
+    <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
+</ul>
+
+<div th:text="${product.getName()}">product</div>
+<div th:text="${product.getId()}">id</div>
+</body>
+</html>

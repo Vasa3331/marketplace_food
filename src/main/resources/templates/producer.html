@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/themeleaf-extras-springsequrity5">
+<head>
+    <meta charset="UTF-8">
+    <title>producer</title>
+</head>
+<body>
+<h1>Menu</h1>
+<ul>
+    <li><a href="/">Products</a></li>
+    <li sec:authorize="hasRole('PRODUCER')"><a href="/producer">Add new product</a></li>
+    <li sec:authorize="hasRole('CONSUMER')"><a href="/basket">Basket</a></li>
+    <li sec:authorize="isAnonymous"><a href="/login">log in</a></li>
+    <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
+</ul>
+<h1>Add new Farmer products</h1>
+
+    <p><b>Название продукта</b><Br>
+        <input type="text" name="name" size="40">
+    </p>
+    <p><b>Цена продукта</b><Br>
+        <input type="double" name="price" size="40">
+    </p>
+    <p>Описание продукта<Br>
+        <textarea name="description" cols="40" rows="3"></textarea></p>
+    <p><input type="submit" value="Отправить">
+        <input type="reset" value="Очистить"></p>
+</form>
+</body>
+</html>

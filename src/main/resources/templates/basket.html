@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basket</title>
+</head>
+<body>
+<h1>Menu</h1>
+<ul>
+    <li><a href="/">Products</a></li>
+    <li sec:authorize="hasRole('PRODUCER')"><a href="/producer">Add new product</a></li>
+    <li sec:authorize="hasRole('CONSUMER')"><a href="/basket">Basket</a></li>
+    <li sec:authorize="isAnonymous"><a href="/login">log in</a></li>
+    <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
+</ul>
+<h1>Farmer products of your choice</h1>
+
+</body>
+</html>
