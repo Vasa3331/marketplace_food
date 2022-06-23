@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
+
+import javax.servlet.ServletContext;
 
 @Configuration
 public class AppSequrityConfig extends WebSecurityConfigurerAdapter {
@@ -38,7 +41,7 @@ public class AppSequrityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/basket").hasRole("CONSUMER")
-                .antMatchers("/producer").hasRole("PRODUCER")
+                .antMatchers("/producer", "/edit", "/delete").hasRole("PRODUCER")
                 .anyRequest().permitAll()
                 .and().logout().logoutSuccessUrl("/")
                 .and().formLogin();

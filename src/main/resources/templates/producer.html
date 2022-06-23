@@ -14,17 +14,17 @@
     <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
 </ul>
 <h1>Add new Farmer products</h1>
-
-    <p><b>Название продукта</b><Br>
+<form method="POST" action="/">
+    <p><b>Product name</b><Br>
         <input type="text" name="name" size="40">
     </p>
-    <p><b>Цена продукта</b><Br>
+    <p><b>Product price</b><Br>
         <input type="double" name="price" size="40">
     </p>
-    <p>Описание продукта<Br>
+    <p>Product description<Br>
         <textarea name="description" cols="40" rows="3"></textarea></p>
-    <p><input type="submit" value="Отправить">
-        <input type="reset" value="Очистить"></p>
+    <p><input type="submit" value="Submit">
+        <input type="reset" value="Clear"></p>
 </form>
 </body>
 </html>

@@ -15,7 +15,14 @@
     <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
 </ul>
 
-<div th:text="${product.getName()}">product</div>
-<div th:text="${product.getId()}">id</div>
+<div th:text="${product.getName()}"></div>
+<div th:text="${product.getPrice()}"></div>
+<div th:text="${product.getDescription()}"></div>
+<form sec:authorize="hasRole('PRODUCER')" method="GET" th:action="${'/' + product.getId() +  '/edit'}">
+    <p><input type="submit" value="Update"></p></form>
+<form sec:authorize="hasRole('PRODUCER')" method="POST" th:action="${'/' + product.getId() +  '/delete'}">
+    <p><input type="submit" value="Delete"></p></form>
+<form sec:authorize="hasRole('CONSUMER')" method="POST" th:action="${'/' + product.getId() +  '/order'}">
+    <p><input type="submit" value="Add to basket"></p></form>
 </body>
 </html>

@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Farmer marketplace</title>
+    <title>order</title>
 </head>
 <body>
 <h1>Menu</h1>
@@ -14,15 +14,13 @@
     <li sec:authorize="isAnonymous"><a href="/login">log in</a></li>
     <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
 </ul>
-<h1>Farmer products</h1>
 
-<div th:each="product: ${products}">
-    <a th:href="@{/{id}(id=${product.getId()})}" th:text="${product.getName()}">list products</a>
-    <div th:text="${product.getPrice()}"></div>
-    <div th:text="${product.getDescription()}"></div>
-    <form sec:authorize="hasRole('CONSUMER')" method="GET" th:action="${'/' + product.getId() +  '/order'}">
-        <p><input type="submit" value="Add to basket"></p></form>
-</div>
+<div th:text="${product.getName()}"></div>
+<div th:text="${product.getPrice()}"></div>
+<div th:text="${product.getDescription()}"></div>
+
+<form sec:authorize="hasRole('CONSUMER')" method="POST" th:action="${'/' + product.getId() +  '/order'}">
+    <p><input type="submit" value="Add to basket"></p></form>
 
 </body>
 </html>

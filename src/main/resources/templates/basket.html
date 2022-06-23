@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/themeleaf-extras-springsequrity5" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>basket</title>
@@ -14,6 +14,13 @@
     <li sec:authorize="isAuthenticated"><a href="/logout">log out</a></li>
 </ul>
 <h1>Farmer products of your choice</h1>
+
+<div th:each="product: ${products}">
+    <a th:text="${product.getName()}"></a>
+    <div th:text="${product.getPrice()}"></div>
+    <form sec:authorize="hasRole('CONSUMER')" method="POST" th:action="${'/' + product.getId() +  '/basket'}">
+        <p><input type="submit" value="Delete from basket"></p></form>
+</div>
 
 </body>
 </html>
